@@ -47,31 +47,26 @@ const defaultChartConfig = {
 };
 
 const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, payload }: any) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+const renderCustomizedLabel = ({ cx, cy, midAngle, outerRadius, percent, payload }: any) => {
+  const radius = outerRadius + 30;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  const sin = Math.sin(-RADIAN * midAngle);
-  const cos = Math.cos(-RADIAN * midAngle);
-  const sx = cx + (outerRadius + 10) * cos;
-  const sy = cy + (outerRadius + 10) * sin;
-  const mx = cx + (outerRadius + 30) * cos;
-  const my = cy + (outerRadius + 30) * sin;
-  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-  const ey = my;
-  const textAnchor = cos >= 0 ? 'start' : 'end';
+  const textAnchor = x > cx ? 'start' : 'end';
 
   return (
-    <>
-      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={"#333"} fill="none" />
-      <circle cx={ex} cy={ey} r={2} fill={"#333"} stroke="none" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#000" className="font-bold text-sm" dy={4}>
-        {`${payload.label} (${(percent * 100).toFixed(0)}%)`}
-      </text>
-    </>
+    <text
+      x={x}
+      y={y}
+      textAnchor={textAnchor}
+      fill="#000"
+      className="font-bold text-sm"
+      dominantBaseline="central"
+    >
+      {`${payload.label} (${(percent * 100).toFixed(0)}%)`}
+    </text>
   );
 };
+
 
 export function FieldStatsChart({ chartData: chartDataProp, height, customChartConfig }: { chartData?: typeof initialChartData, height?: string, customChartConfig?: any }) {
   const { t } = useLanguage();
