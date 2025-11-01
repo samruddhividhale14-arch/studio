@@ -21,8 +21,8 @@
     },
     "welcome": "वापस स्वागत है, जॉन!",
     "description": "यहाँ आपके खेत की स्थिति का एक त्वरित अवलोकन है।",
-    "fieldStatusSummary": "मेरे खेतों की स्थिति",
-    "fieldStatusSummaryDescription": "आपके खेतों की स्वास्थ्य स्थिति।",
+    "fieldStatusSummary": "कुल मिलाकर क्षेत्र की स्थिति",
+    "fieldStatusSummaryDescription": "आपके सभी क्षेत्रों के स्वास्थ्य का सारांश।",
     "fieldStatus": {
       "healthy": {
         "title": "स्वस्थ",
@@ -36,6 +36,22 @@
         "title": "तनावग्रस्त",
         "description": "10% खेत पानी के तनाव में हैं।"
       }
+    },
+    "weather": {
+      "title": "मौसम का पूर्वानुमान",
+      "current": "धूप वाला",
+      "hourlyForecast": "घंटे का पूर्वानुमान"
+    }
+  },
+  "myFieldsPage": {
+    "title": "मेरे खेत",
+    "description": "अपने क्षेत्र क्षेत्रों का प्रबंधन करें और एआई-संचालित अंतर्दृष्टि प्राप्त करें।",
+    "zones": {
+      "title": "फील्ड ज़ोन",
+      "description": "आपके क्षेत्र में प्रत्येक क्षेत्र के लिए स्वास्थ्य स्थिति।",
+      "zoneA": "जोन ए",
+      "zoneB": "जोन बी",
+      "zoneC": "जोन सी"
     }
   },
   "decisionSupport": {

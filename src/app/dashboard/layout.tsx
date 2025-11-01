@@ -1,5 +1,6 @@
 'use client';
 import type { PropsWithChildren } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { BrainCircuit, Home, Leaf, LogOut, Settings, Tractor, User } from 'lucide-react';
 
@@ -30,6 +31,7 @@ import { LanguageProvider, useLanguage } from '@/i18n/provider';
 
 function DashboardLayoutContent({ children }: PropsWithChildren) {
   const { t } = useLanguage();
+  const pathname = usePathname();
   const avatar = PlaceHolderImages.find((img) => img.id === 'avatar-male-1');
   return (
     <SidebarProvider>
@@ -52,7 +54,7 @@ function DashboardLayoutContent({ children }: PropsWithChildren) {
               <SidebarMenuButton
                 asChild
                 tooltip={t('sidebar.dashboard')}
-                isActive={true}
+                isActive={pathname === '/dashboard'}
               >
                 <Link href="/dashboard">
                   <Home />
@@ -61,8 +63,12 @@ function DashboardLayoutContent({ children }: PropsWithChildren) {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip={t('sidebar.myFields')}>
-                <Link href="#">
+              <SidebarMenuButton 
+                asChild 
+                tooltip={t('sidebar.myFields')}
+                isActive={pathname === '/dashboard/my-fields'}
+              >
+                <Link href="/dashboard/my-fields">
                   <Tractor />
                   <span>{t('sidebar.myFields')}</span>
                 </Link>
@@ -70,7 +76,7 @@ function DashboardLayoutContent({ children }: PropsWithChildren) {
             </SidebarMenuItem>
              <SidebarMenuItem>
               <SidebarMenuButton asChild tooltip={t('sidebar.aiSupport')}>
-                <Link href="#">
+                <Link href="/dashboard/my-fields">
                   <BrainCircuit />
                   <span>{t('sidebar.aiSupport')}</span>
                 </Link>

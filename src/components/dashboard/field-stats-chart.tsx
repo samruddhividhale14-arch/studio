@@ -93,7 +93,7 @@ const ActiveShape = (props: any) => {
 };
 
 
-export function FieldStatsChart() {
+export function FieldStatsChart({ chartData: chartDataProp, height }: { chartData?: typeof initialChartData, height?: string }) {
   const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = React.useState(0);
 
@@ -105,15 +105,59 @@ export function FieldStatsChart() {
   );
   
   const chartData = React.useMemo(() => {
-    return initialChartData.map(item => ({
+    const data = chartDataProp || initialChartData;
+    return data.map(item => ({
       ...item,
       label: t(`dashboard.fieldStatus.${item.metric}.title`),
     }));
-  }, [t]);
+  }, [t, chartDataProp]);
 
 
   const activeMetric = chartData[activeIndex];
+
+  if (!activeMetric) {
+    return null;
+  }
+
   const ActiveIcon = chartConfig[activeMetric.metric as keyof typeof chartConfig].icon;
+
+  const content = (
+    <>
+    <CardContent className="flex-1 pb-0">
+      <ChartContainer
+        config={chartConfig}
+        className="mx-auto aspect-square"
+        style={{ height: height || '300px' }}
+      >
+        <PieChart>
+          <ChartTooltip
+            cursor={false}
+            content={<ChartTooltipContent hideLabel />}
+          />
+          <Pie
+            activeIndex={activeIndex}
+            activeShape={ActiveShape}
+            onMouseEnter={onPieEnter}
+            data={chartData}
+            dataKey="value"
+            nameKey="label"
+            innerRadius={height ? 50 : 80}
+            outerRadius={height ? 70 : 110}
+            strokeWidth={2}
+          />
+        </PieChart>
+      </ChartContainer>
+    </CardContent>
+    <CardContent className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+      <ActiveIcon className="h-5 w-5" />
+      <div>{t(`dashboard.fieldStatus.${activeMetric.metric}.description`)}</div>
+    </CardContent>
+    </>
+  );
+
+  if (chartDataProp) {
+    return content;
+  }
 
   return (
     <Card className="flex flex-col">
@@ -121,34 +165,7 @@ export function FieldStatsChart() {
         <CardTitle>{t('dashboard.fieldStatusSummary')}</CardTitle>
         <CardDescription>{t('dashboard.fieldStatusSummaryDescription')}</CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
-        <ChartContainer
-          config={chartConfig}
-          className="mx-auto aspect-square max-h-[300px]"
-        >
-          <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Pie
-              activeIndex={activeIndex}
-              activeShape={ActiveShape}
-              onMouseEnter={onPieEnter}
-              data={chartData}
-              dataKey="value"
-              nameKey="label"
-              innerRadius={80}
-              outerRadius={110}
-              strokeWidth={2}
-            />
-          </PieChart>
-        </ChartContainer>
-      </CardContent>
-      <CardContent className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-        <ActiveIcon className="h-5 w-5" />
-        <div>{t(`dashboard.fieldStatus.${activeMetric.metric}.description`)}</div>
-      </CardContent>
+      {content}
     </Card>
   );
 }

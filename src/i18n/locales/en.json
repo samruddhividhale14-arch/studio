@@ -21,8 +21,8 @@
     },
     "welcome": "Welcome back, John!",
     "description": "Here's a quick overview of your farm's status.",
-    "fieldStatusSummary": "My Fields Status",
-    "fieldStatusSummaryDescription": "Health status of your fields.",
+    "fieldStatusSummary": "Overall Field Status",
+    "fieldStatusSummaryDescription": "A summary of the health across all your fields.",
     "fieldStatus": {
       "healthy": {
         "title": "Healthy",
@@ -36,6 +36,22 @@
         "title": "Stressed",
         "description": "10% of fields are under water stress."
       }
+    },
+    "weather": {
+      "title": "Weather Forecast",
+      "current": "Sunny",
+      "hourlyForecast": "Hourly Forecast"
+    }
+  },
+  "myFieldsPage": {
+    "title": "My Fields",
+    "description": "Manage your field zones and get AI-powered insights.",
+    "zones": {
+      "title": "Field Zones",
+      "description": "Health status for each zone in your field.",
+      "zoneA": "Zone A",
+      "zoneB": "Zone B",
+      "zoneC": "Zone C"
     }
   },
   "decisionSupport": {

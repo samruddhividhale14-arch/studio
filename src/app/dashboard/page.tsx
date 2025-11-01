@@ -1,6 +1,6 @@
 'use client';
 
-import { DecisionSupport } from '@/components/dashboard/decision-support';
+import { WeatherForecast } from '@/components/dashboard/weather-forecast';
 import { FieldStatsChart } from '@/components/dashboard/field-stats-chart';
 import { useLanguage } from '@/i18n/provider';
 
@@ -18,11 +18,9 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1fr_2fr]">
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-1">
+        <WeatherForecast />
         <FieldStatsChart />
-        <div className="lg:col-start-2">
-            <DecisionSupport />
-        </div>
       </div>
     </div>
   );

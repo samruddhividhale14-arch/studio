@@ -21,8 +21,8 @@
     },
     "welcome": "पुन्हा स्वागत आहे, जॉन!",
     "description": "येथे तुमच्या शेताच्या स्थितीचा एक छोटासा आढावा आहे.",
-    "fieldStatusSummary": "माझ्या शेताची स्थिती",
-    "fieldStatusSummaryDescription": "तुमच्या शेताची आरोग्य स्थिती.",
+    "fieldStatusSummary": "एकूणच शेताची स्थिती",
+    "fieldStatusSummaryDescription": "तुमच्या सर्व शेतांच्या आरोग्याचा सारांश.",
     "fieldStatus": {
       "healthy": {
         "title": "निरोगी",
@@ -36,6 +36,22 @@
         "title": "तणावग्रस्त",
         "description": "१०% शेती पाण्याच्या तणावाखाली आहेत."
       }
+    },
+    "weather": {
+      "title": "हवामान अंदाज",
+      "current": "स्वच्छ सूर्यप्रकाश",
+      "hourlyForecast": "तासाचा अंदाज"
+    }
+  },
+  "myFieldsPage": {
+    "title": "माझी शेती",
+    "description": "तुमचे शेतीचे विभाग व्यवस्थापित करा आणि एआय-आधारित माहिती मिळवा.",
+    "zones": {
+      "title": "शेतीचे विभाग",
+      "description": "तुमच्या शेतातील प्रत्येक विभागासाठी आरोग्य स्थिती.",
+      "zoneA": "विभाग अ",
+      "zoneB": "विभाग ब",
+      "zoneC": "विभाग क"
     }
   },
   "decisionSupport": {
