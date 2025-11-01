@@ -164,7 +164,7 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>{t('dashboard.fieldStatusSummary')}</CardTitle>
+        <CardTitle className='font-bold'>{t('dashboard.fieldStatusSummary')}</CardTitle>
         <CardDescription>{t('dashboard.fieldStatusSummaryDescription')}</CardDescription>
       </CardHeader>
       {content}

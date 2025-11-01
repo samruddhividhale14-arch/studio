@@ -56,7 +56,7 @@ export function FieldZones() {
       <CardContent className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {zoneData.map(({ zone, data, cropType }) => (
           <div key={zone} className="flex flex-col gap-4">
-            <h3 className="text-lg font-semibold text-center mb-2">{t(`myFieldsPage.zones.${zone}`)}</h3>
+            <h3 className="text-lg font-bold text-center mb-2">{t(`myFieldsPage.zones.${zone}`)}</h3>
             <FieldStatsChart chartData={data} height="250px" />
             <Tabs defaultValue='details' className='w-full'>
               <TabsList className='grid w-full grid-cols-2'>

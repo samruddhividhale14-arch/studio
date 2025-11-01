@@ -32,7 +32,7 @@ export function CropDetailsTabs() {
       <TabsContent value="water">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base text-center">{t('myFieldsPage.cropDetails.water.distributionTitle')}</CardTitle>
+            <CardTitle className="text-base text-center font-bold">{t('myFieldsPage.cropDetails.water.distributionTitle')}</CardTitle>
           </CardHeader>
           <FieldStatsChart chartData={waterData} height="200px" customChartConfig={{
             high: { label: t('myFieldsPage.cropDetails.levels.high') },
@@ -43,7 +43,7 @@ export function CropDetailsTabs() {
       <TabsContent value="pest">
         <Card>
           <CardHeader>
-             <CardTitle className="text-base text-center">{t('myFieldsPage.cropDetails.pest.distributionTitle')}</CardTitle>
+             <CardTitle className="text-base text-center font-bold">{t('myFieldsPage.cropDetails.pest.distributionTitle')}</CardTitle>
           </CardHeader>
           <FieldStatsChart chartData={pestData} height="200px" customChartConfig={{
             high: { label: t('myFieldsPage.cropDetails.levels.high') },
@@ -54,7 +54,7 @@ export function CropDetailsTabs() {
       <TabsContent value="nutrition">
         <Card>
           <CardHeader>
-             <CardTitle className="text-base text-center">{t('myFieldsPage.cropDetails.nutrition.distributionTitle')}</CardTitle>
+             <CardTitle className="text-base text-center font-bold">{t('myFieldsPage.cropDetails.nutrition.distributionTitle')}</CardTitle>
           </CardHeader>
           <FieldStatsChart chartData={nutritionData} height="200px" customChartConfig={{
             high: { label: t('myFieldsPage.cropDetails.levels.high') },
