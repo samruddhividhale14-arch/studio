@@ -36,6 +36,7 @@ import {
 } from '@/components/ui/accordion';
 import { BrainCircuit, Leaf, Loader2, Syringe, SprayCan } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
+import { useLanguage } from '@/i18n/provider';
 
 const formSchema = z.object({
   fieldData: z
@@ -50,6 +51,7 @@ const formSchema = z.object({
 });
 
 export function DecisionSupport() {
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
   const [result, setResult] =
     useState<DataDrivenDecisionSupportOutput | null>(null);
@@ -89,11 +91,10 @@ export function DecisionSupport() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 font-headline">
           <BrainCircuit className="h-6 w-6" />
-          <span>AI Decision Support</span>
+          <span>{t('decisionSupport.title')}</span>
         </CardTitle>
         <CardDescription>
-          Enter your current field and weather data to receive AI-powered
-          recommendations.
+          {t('decisionSupport.description')}
         </CardDescription>
       </CardHeader>
       <Form {...form}>
@@ -105,10 +106,10 @@ export function DecisionSupport() {
                 name="fieldData"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Field Data</FormLabel>
+                    <FormLabel>{t('decisionSupport.form.fieldData.label')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="e.g., Crop type, soil moisture, temperature..."
+                        placeholder={t('decisionSupport.form.fieldData.placeholder')}
                         className="min-h-32"
                         {...field}
                       />
@@ -122,10 +123,10 @@ export function DecisionSupport() {
                 name="weatherForecast"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Weather Forecast</FormLabel>
+                    <FormLabel>{t('decisionSupport.form.weatherForecast.label')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="e.g., Next 7 days temperature, precipitation..."
+                        placeholder={t('decisionSupport.form.weatherForecast.placeholder')}
                         className="min-h-32"
                         {...field}
                       />
@@ -139,10 +140,10 @@ export function DecisionSupport() {
                 name="pestInfestationLikelihood"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Pest Likelihood</FormLabel>
+                    <FormLabel>{t('decisionSupport.form.pestLikelihood.label')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="e.g., Recent reports, field conditions..."
+                        placeholder={t('decisionSupport.form.pestLikelihood.placeholder')}
                         className="min-h-32"
                         {...field}
                       />
@@ -154,30 +155,30 @@ export function DecisionSupport() {
             </div>
             {error && (
               <Alert variant="destructive">
-                <AlertTitle>Error</AlertTitle>
+                <AlertTitle>{t('decisionSupport.error.title')}</AlertTitle>
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
             {result && (
               <div>
                 <h3 className="mb-4 text-lg font-semibold font-headline">
-                  AI Recommendations
+                  {t('decisionSupport.recommendations.title')}
                 </h3>
                 <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
                   <AccordionItem value="item-1">
-                    <AccordionTrigger className="font-semibold"><Leaf className="mr-2 h-5 w-5 text-primary"/>Planting Suggestions</AccordionTrigger>
+                    <AccordionTrigger className="font-semibold"><Leaf className="mr-2 h-5 w-5 text-primary"/>{t('decisionSupport.recommendations.planting.title')}</AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">{result.plantingSuggestions}</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-2">
-                    <AccordionTrigger className="font-semibold"><SprayCan className="mr-2 h-5 w-5 text-primary"/>Irrigation Suggestions</AccordionTrigger>
+                    <AccordionTrigger className="font-semibold"><SprayCan className="mr-2 h-5 w-5 text-primary"/>{t('decisionSupport.recommendations.irrigation.title')}</AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">{result.irrigationSuggestions}</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-3">
-                    <AccordionTrigger className="font-semibold"><Syringe className="mr-2 h-5 w-5 text-primary"/>Pest Control Suggestions</AccordionTrigger>
+                    <AccordionTrigger className="font-semibold"><Syringe className="mr-2 h-5 w-5 text-primary"/>{t('decisionSupport.recommendations.pestControl.title')}</AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">{result.pestControlSuggestions}</AccordionContent>
                   </AccordionItem>
                    <AccordionItem value="item-4">
-                    <AccordionTrigger className="font-semibold">Other Suggestions</AccordionTrigger>
+                    <AccordionTrigger className="font-semibold">{t('decisionSupport.recommendations.other.title')}</AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">{result.otherSuggestions}</AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -189,7 +190,7 @@ export function DecisionSupport() {
               {loading && (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               )}
-              {loading ? 'Generating...' : 'Get Suggestions'}
+              {loading ? t('decisionSupport.form.button.loading') : t('decisionSupport.form.button.idle')}
             </Button>
           </CardFooter>
         </form>

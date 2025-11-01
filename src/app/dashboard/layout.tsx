@@ -1,3 +1,4 @@
+'use client';
 import type { PropsWithChildren } from 'react';
 import Link from 'next/link';
 import { BrainCircuit, Home, Leaf, LogOut, Settings, Tractor, User } from 'lucide-react';
@@ -25,8 +26,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
+import { LanguageProvider, useLanguage } from '@/i18n/provider';
 
-export default function DashboardLayout({ children }: PropsWithChildren) {
+function DashboardLayoutContent({ children }: PropsWithChildren) {
+  const { t } = useLanguage();
   const avatar = PlaceHolderImages.find((img) => img.id === 'avatar-male-1');
   return (
     <SidebarProvider>
@@ -48,28 +51,28 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             <SidebarMenuItem>
               <SidebarMenuButton
                 asChild
-                tooltip="Dashboard"
+                tooltip={t('sidebar.dashboard')}
                 isActive={true}
               >
                 <Link href="/dashboard">
                   <Home />
-                  <span>Dashboard</span>
+                  <span>{t('sidebar.dashboard')}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip="My Fields">
+              <SidebarMenuButton asChild tooltip={t('sidebar.myFields')}>
                 <Link href="#">
                   <Tractor />
-                  <span>My Fields</span>
+                  <span>{t('sidebar.myFields')}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
              <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip="AI Support">
+              <SidebarMenuButton asChild tooltip={t('sidebar.aiSupport')}>
                 <Link href="#">
                   <BrainCircuit />
-                  <span>AI Support</span>
+                  <span>{t('sidebar.aiSupport')}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -80,22 +83,22 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="w-full justify-start gap-2 px-2">
                 <Avatar className="h-8 w-8">
-                  {avatar && <AvatarImage src={avatar.imageUrl} alt="User Avatar" data-ai-hint={avatar.imageHint} />}
+                  {avatar && <AvatarImage src={avatar.imageUrl} alt={t('sidebar.user.avatarAlt')} data-ai-hint={avatar.imageHint} />}
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <div className="text-left">
-                  <p className="text-sm font-medium">John Doe</p>
-                  <p className="text-xs text-muted-foreground">Farmer</p>
+                  <p className="text-sm font-medium">{t('sidebar.user.name')}</p>
+                  <p className="text-xs text-muted-foreground">{t('sidebar.user.role')}</p>
                 </div>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="mb-2 w-56" side="top" align="start">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>{t('sidebar.user.dropdown.myAccount')}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem><User className="mr-2 h-4 w-4" />Profile</DropdownMenuItem>
-              <DropdownMenuItem><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
+              <DropdownMenuItem><User className="mr-2 h-4 w-4" />{t('sidebar.user.dropdown.profile')}</DropdownMenuItem>
+              <DropdownMenuItem><Settings className="mr-2 h-4 w-4" />{t('sidebar.user.dropdown.settings')}</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild><Link href="/"><LogOut className="mr-2 h-4 w-4" />Log out</Link></DropdownMenuItem>
+              <DropdownMenuItem asChild><Link href="/"><LogOut className="mr-2 h-4 w-4" />{t('sidebar.user.dropdown.logout')}</Link></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </SidebarFooter>
@@ -106,4 +109,12 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
       </SidebarInset>
     </SidebarProvider>
   );
+}
+
+export default function DashboardLayout({ children }: PropsWithChildren) {
+  return (
+    <LanguageProvider>
+      <DashboardLayoutContent>{children}</DashboardLayoutContent>
+    </LanguageProvider>
+  )
 }

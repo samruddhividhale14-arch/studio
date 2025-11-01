@@ -1,0 +1,83 @@
+{
+  "sidebar": {
+    "dashboard": "डॅशबोर्ड",
+    "myFields": "माझी शेती",
+    "aiSupport": "एआय समर्थन",
+    "user": {
+      "avatarAlt": "वापरकर्ता अवतार",
+      "name": "जॉन डो",
+      "role": "शेतकरी",
+      "dropdown": {
+        "myAccount": "माझे खाते",
+        "profile": "प्रोफाइल",
+        "settings": "सेटिंग्ज",
+        "logout": "लॉग आउट"
+      }
+    }
+  },
+  "dashboard": {
+    "header": {
+      "searchPlaceholder": "शेती, पिके शोधा..."
+    },
+    "welcome": "पुन्हा स्वागत आहे, जॉन!",
+    "description": "येथे तुमच्या शेताच्या स्थितीचा एक छोटासा आढावा आहे.",
+    "stats": {
+      "avgTemp": {
+        "title": "सरासरी तापमान",
+        "change": "कालपासून +1.2°C"
+      },
+      "soilMoisture": {
+        "title": "मातीचा ओलावा",
+        "change": "शेवटच्या सिंचनापासून -3%"
+      },
+      "sunlightHours": {
+        "title": "सूर्यप्रकाशाचे तास",
+        "change": "कालपासून +0.5 तास"
+      },
+      "windSpeed": {
+        "title": "वाऱ्याचा वेग",
+        "change": "स्थिर"
+      }
+    }
+  },
+  "decisionSupport": {
+    "title": "एआय निर्णय समर्थन",
+    "description": "एआय-समर्थित शिफारसी मिळविण्यासाठी तुमचा वर्तमान शेताचा आणि हवामानाचा डेटा प्रविष्ट करा.",
+    "form": {
+      "fieldData": {
+        "label": "शेताचा डेटा",
+        "placeholder": "उदा. पिकाचा प्रकार, मातीचा ओलावा, तापमान..."
+      },
+      "weatherForecast": {
+        "label": "हवामान अंदाज",
+        "placeholder": "उदा. पुढील ७ दिवसांचे तापमान, पर्जन्यमान..."
+      },
+      "pestLikelihood": {
+        "label": "कीड लागण्याची शक्यता",
+        "placeholder": "उदा. अलीकडील अहवाल, शेताची परिस्थिती..."
+      },
+      "button": {
+        "idle": "सूचना मिळवा",
+        "loading": "तयार होत आहे..."
+      }
+    },
+    "error": {
+      "title": "त्रुटी"
+    },
+    "recommendations": {
+      "title": "एआय शिफारसी",
+      "planting": {
+        "title": "लागवड सूचना"
+      },
+      "irrigation": {
+        "title": "सिंचन सूचना"
+      },
+      "pestControl": {
+        "title": "कीटक नियंत्रण सूचना"
+      },
+      "other": {
+        "title": "इतर सूचना"
+      }
+    }
+  }
+}

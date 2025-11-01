@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Card,
   CardContent,
@@ -7,47 +9,45 @@ import {
 } from '@/components/ui/card';
 import { Droplets, Sun, Thermometer, Wind } from 'lucide-react';
 import { DecisionSupport } from '@/components/dashboard/decision-support';
-
-const fieldStats = [
-  {
-    title: 'Avg. Temperature',
-    value: '25.4°C',
-    icon: <Thermometer className="h-6 w-6 text-muted-foreground" />,
-    change: '+1.2°C from yesterday',
-    changeType: 'increase',
-  },
-  {
-    title: 'Soil Moisture',
-    value: '58%',
-    icon: <Droplets className="h-6 w-6 text-muted-foreground" />,
-    change: '-3% from last irrigation',
-    changeType: 'decrease',
-  },
-  {
-    title: 'Sunlight Hours',
-    value: '9.2h',
-    icon: <Sun className="h-6 w-6 text-muted-foreground" />,
-    change: '+0.5h from yesterday',
-    changeType: 'increase',
-  },
-  {
-    title: 'Wind Speed',
-    value: '12 km/h',
-    icon: <Wind className="h-6 w-6 text-muted-foreground" />,
-    change: 'Consistent',
-    changeType: 'neutral',
-  },
-];
+import { useLanguage } from '@/i18n/provider';
 
 export default function DashboardPage() {
+  const { t } = useLanguage();
+
+  const fieldStats = [
+    {
+      title: t('dashboard.stats.avgTemp.title'),
+      value: '25.4°C',
+      icon: <Thermometer className="h-6 w-6 text-muted-foreground" />,
+      change: t('dashboard.stats.avgTemp.change'),
+    },
+    {
+      title: t('dashboard.stats.soilMoisture.title'),
+      value: '58%',
+      icon: <Droplets className="h-6 w-6 text-muted-foreground" />,
+      change: t('dashboard.stats.soilMoisture.change'),
+    },
+    {
+      title: t('dashboard.stats.sunlightHours.title'),
+      value: '9.2h',
+      icon: <Sun className="h-6 w-6 text-muted-foreground" />,
+      change: t('dashboard.stats.sunlightHours.change'),
+    },
+    {
+      title: t('dashboard.stats.windSpeed.title'),
+      value: '12 km/h',
+      icon: <Wind className="h-6 w-6 text-muted-foreground" />,
+      change: t('dashboard.stats.windSpeed.change'),
+    },
+  ];
   return (
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline">
-          Welcome back, John!
+          {t('dashboard.welcome')}
         </h1>
         <p className="text-muted-foreground">
-          Here&apos;s a quick overview of your farm&apos;s status.
+          {t('dashboard.description')}
         </p>
       </div>
 

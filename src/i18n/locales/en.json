@@ -1,0 +1,83 @@
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "myFields": "My Fields",
+    "aiSupport": "AI Support",
+    "user": {
+      "avatarAlt": "User Avatar",
+      "name": "John Doe",
+      "role": "Farmer",
+      "dropdown": {
+        "myAccount": "My Account",
+        "profile": "Profile",
+        "settings": "Settings",
+        "logout": "Log out"
+      }
+    }
+  },
+  "dashboard": {
+    "header": {
+      "searchPlaceholder": "Search fields, crops..."
+    },
+    "welcome": "Welcome back, John!",
+    "description": "Here's a quick overview of your farm's status.",
+    "stats": {
+      "avgTemp": {
+        "title": "Avg. Temperature",
+        "change": "+1.2°C from yesterday"
+      },
+      "soilMoisture": {
+        "title": "Soil Moisture",
+        "change": "-3% from last irrigation"
+      },
+      "sunlightHours": {
+        "title": "Sunlight Hours",
+        "change": "+0.5h from yesterday"
+      },
+      "windSpeed": {
+        "title": "Wind Speed",
+        "change": "Consistent"
+      }
+    }
+  },
+  "decisionSupport": {
+    "title": "AI Decision Support",
+    "description": "Enter your current field and weather data to receive AI-powered recommendations.",
+    "form": {
+      "fieldData": {
+        "label": "Field Data",
+        "placeholder": "e.g., Crop type, soil moisture, temperature..."
+      },
+      "weatherForecast": {
+        "label": "Weather Forecast",
+        "placeholder": "e.g., Next 7 days temperature, precipitation..."
+      },
+      "pestLikelihood": {
+        "label": "Pest Likelihood",
+        "placeholder": "e.g., Recent reports, field conditions..."
+      },
+      "button": {
+        "idle": "Get Suggestions",
+        "loading": "Generating..."
+      }
+    },
+    "error": {
+      "title": "Error"
+    },
+    "recommendations": {
+      "title": "AI Recommendations",
+      "planting": {
+        "title": "Planting Suggestions"
+      },
+      "irrigation": {
+        "title": "Irrigation Suggestions"
+      },
+      "pestControl": {
+        "title": "Pest Control Suggestions"
+      },
+      "other": {
+        "title": "Other Suggestions"
+      }
+    }
+  }
+}

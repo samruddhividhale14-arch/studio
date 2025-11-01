@@ -1,0 +1,83 @@
+{
+  "sidebar": {
+    "dashboard": "tableau",
+    "myFields": "मेरे खेत",
+    "aiSupport": "एआई समर्थन",
+    "user": {
+      "avatarAlt": "उपयोगकर्ता अवतार",
+      "name": "जॉन डो",
+      "role": "किसान",
+      "dropdown": {
+        "myAccount": "मेरा खाता",
+        "profile": "प्रोफ़ाइल",
+        "settings": "सेटिंग्स",
+        "logout": "लॉग आउट"
+      }
+    }
+  },
+  "dashboard": {
+    "header": {
+      "searchPlaceholder": "खेत, फसलें खोजें..."
+    },
+    "welcome": "वापस स्वागत है, जॉन!",
+    "description": "यहाँ आपके खेत की स्थिति का एक त्वरित अवलोकन है।",
+    "stats": {
+      "avgTemp": {
+        "title": "औसत तापमान",
+        "change": "कल से +1.2°C"
+      },
+      "soilMoisture": {
+        "title": "मिट्टी की नमी",
+        "change": "आखिरी सिंचाई से -3%"
+      },
+      "sunlightHours": {
+        "title": "धूप के घंटे",
+        "change": "कल से +0.5 घंटे"
+      },
+      "windSpeed": {
+        "title": "हवा की गति",
+        "change": "स्थिर"
+      }
+    }
+  },
+  "decisionSupport": {
+    "title": "एआई निर्णय समर्थन",
+    "description": "एआई-संचालित सिफारिशें प्राप्त करने के लिए अपना वर्तमान क्षेत्र और मौसम डेटा दर्ज करें।",
+    "form": {
+      "fieldData": {
+        "label": "खेत का डेटा",
+        "placeholder": "जैसे, फसल का प्रकार, मिट्टी की नमी, तापमान..."
+      },
+      "weatherForecast": {
+        "label": "मौसम का पूर्वानुमान",
+        "placeholder": "जैसे, अगले 7 दिनों का तापमान, वर्षा..."
+      },
+      "pestLikelihood": {
+        "label": "कीट संभावना",
+        "placeholder": "जैसे, हाल की रिपोर्ट, खेत की स्थिति..."
+      },
+      "button": {
+        "idle": "सुझाव प्राप्त करें",
+        "loading": "उत्पन्न हो रहा है..."
+      }
+    },
+    "error": {
+      "title": "त्रुटि"
+    },
+    "recommendations": {
+      "title": "एआई सिफारिशें",
+      "planting": {
+        "title": "रोपण सुझाव"
+      },
+      "irrigation": {
+        "title": "सिंचाई सुझाव"
+      },
+      "pestControl": {
+        "title": "कीट नियंत्रण सुझाव"
+      },
+      "other": {
+        "title": "अन्य सुझाव"
+      }
+    }
+  }
+}
