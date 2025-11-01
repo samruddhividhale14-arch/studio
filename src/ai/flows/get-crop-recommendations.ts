@@ -43,14 +43,15 @@ const prompt = ai.definePrompt({
   output: {schema: CropRecommendationsOutputSchema},
   prompt: `You are an expert agronomist. A farmer needs recommendations for a specific zone on their farm.
 
-Provide actionable advice to maintain or improve crop health based on the following details:
+Provide actionable advice to maintain or improve crop health based on the following details.
+Your recommendations should be practical, easy to implement, and presented as a short, point-wise list.
 
 - Crop Type: {{{cropType}}}
 - Field Zone: {{{zoneId}}}
 - Location: {{{location}}}
 - Current Zone Health Summary: {{{zoneHealth}}}
 
-Your recommendations should be practical and easy for a farmer to implement. Focus on fertilization, irrigation, pest control, and soil management.
+Focus on fertilization, irrigation, pest control, and soil management.
 `,
 });
 
