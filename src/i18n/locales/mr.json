@@ -41,7 +41,8 @@
     "weather": {
       "title": "हवामान अंदाज",
       "current": "स्वच्छ सूर्यप्रकाश",
-      "hourlyForecast": "तासाचा अंदाज"
+      "hourlyForecast": "तासाचा अंदाज",
+      "error": "हवामान डेटा लोड करता आला नाही."
     }
   },
   "myFieldsPage": {
