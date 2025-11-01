@@ -21,24 +21,20 @@
     },
     "welcome": "वापस स्वागत है, जॉन!",
     "description": "यहाँ आपके खेत की स्थिति का एक त्वरित अवलोकन है।",
-    "fieldSummary": "खेत का सारांश",
-    "fieldSummaryDescription": "आपके खेत मेट्रिक्स का एक इंटरैक्टिव अवलोकन।",
-    "stats": {
-      "avgTemp": {
-        "title": "औसत तापमान",
-        "change": "कल से +1.2°C"
+    "fieldStatusSummary": "मेरे खेतों की स्थिति",
+    "fieldStatusSummaryDescription": "आपके खेतों की स्वास्थ्य स्थिति।",
+    "fieldStatus": {
+      "healthy": {
+        "title": "स्वस्थ",
+        "description": "70% खेत इष्टतम स्थिति में हैं।"
       },
-      "soilMoisture": {
-        "title": "मिट्टी की नमी",
-        "change": "आखिरी सिंचाई से -3%"
+      "deficient": {
+        "title": "अपूर्ण",
+        "description": "20% खेतों में पोषक तत्वों की कमी दिखाई देती है।"
       },
-      "sunlightHours": {
-        "title": "धूप के घंटे",
-        "change": "कल से +0.5 घंटे"
-      },
-      "windSpeed": {
-        "title": "हवा की गति",
-        "change": "स्थिर"
+      "stressed": {
+        "title": "तनावग्रस्त",
+        "description": "10% खेत पानी के तनाव में हैं।"
       }
     }
   },

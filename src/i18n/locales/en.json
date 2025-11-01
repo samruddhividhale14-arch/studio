@@ -21,24 +21,20 @@
     },
     "welcome": "Welcome back, John!",
     "description": "Here's a quick overview of your farm's status.",
-    "fieldSummary": "Field Summary",
-    "fieldSummaryDescription": "An interactive overview of your field metrics.",
-    "stats": {
-      "avgTemp": {
-        "title": "Avg. Temperature",
-        "change": "+1.2°C from yesterday"
+    "fieldStatusSummary": "My Fields Status",
+    "fieldStatusSummaryDescription": "Health status of your fields.",
+    "fieldStatus": {
+      "healthy": {
+        "title": "Healthy",
+        "description": "70% of fields are in optimal condition."
       },
-      "soilMoisture": {
-        "title": "Soil Moisture",
-        "change": "-3% from last irrigation"
+      "deficient": {
+        "title": "Deficient",
+        "description": "20% of fields show nutrient deficiency."
       },
-      "sunlightHours": {
-        "title": "Sunlight Hours",
-        "change": "+0.5h from yesterday"
-      },
-      "windSpeed": {
-        "title": "Wind Speed",
-        "change": "Consistent"
+      "stressed": {
+        "title": "Stressed",
+        "description": "10% of fields are under water stress."
       }
     }
   },

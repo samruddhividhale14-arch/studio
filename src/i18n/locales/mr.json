@@ -21,24 +21,20 @@
     },
     "welcome": "पुन्हा स्वागत आहे, जॉन!",
     "description": "येथे तुमच्या शेताच्या स्थितीचा एक छोटासा आढावा आहे.",
-    "fieldSummary": "शेतीचा सारांश",
-    "fieldSummaryDescription": "तुमच्या शेताच्या मेट्रिक्सचा एक संवादात्मक आढावा.",
-    "stats": {
-      "avgTemp": {
-        "title": "सरासरी तापमान",
-        "change": "कालपासून +1.2°C"
+    "fieldStatusSummary": "माझ्या शेताची स्थिती",
+    "fieldStatusSummaryDescription": "तुमच्या शेताची आरोग्य स्थिती.",
+    "fieldStatus": {
+      "healthy": {
+        "title": "निरोगी",
+        "description": "७०% शेती उत्तम स्थितीत आहेत."
       },
-      "soilMoisture": {
-        "title": "मातीचा ओलावा",
-        "change": "शेवटच्या सिंचनापासून -3%"
+      "deficient": {
+        "title": "अपुरे",
+        "description": "२०% शेतांमध्ये पोषक तत्वांची कमतरता दिसून येते."
       },
-      "sunlightHours": {
-        "title": "सूर्यप्रकाशाचे तास",
-        "change": "कालपासून +0.5 तास"
-      },
-      "windSpeed": {
-        "title": "वाऱ्याचा वेग",
-        "change": "स्थिर"
+      "stressed": {
+        "title": "तणावग्रस्त",
+        "description": "१०% शेती पाण्याच्या तणावाखाली आहेत."
       }
     }
   },
