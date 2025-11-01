@@ -21,6 +21,8 @@
     },
     "welcome": "Welcome back, John!",
     "description": "Here's a quick overview of your farm's status.",
+    "fieldSummary": "Field Summary",
+    "fieldSummaryDescription": "An interactive overview of your field metrics.",
     "stats": {
       "avgTemp": {
         "title": "Avg. Temperature",
