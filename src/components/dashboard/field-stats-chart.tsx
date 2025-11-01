@@ -76,12 +76,6 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
   const activeMetricConfig = chartConfig[activeMetric.metric as keyof typeof chartConfig];
   const ActiveIcon = activeMetricConfig?.icon;
 
-  const totalValue = React.useMemo(
-    () => chartData.reduce((acc, curr) => acc + curr.value, 0),
-    [chartData]
-  );
-
-
   const content = (
     <>
     <CardContent className="flex-1 flex items-center justify-center pb-0">
@@ -104,20 +98,32 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
             strokeWidth={2}
             activeIndex={activeIndex}
             onMouseEnter={onPieEnter}
+            label={(props) => {
+              const { cx, cy, midAngle, outerRadius, payload, percent } = props;
+              const RADIAN = Math.PI / 180;
+              const radius = outerRadius * 1.25;
+              const x = cx + radius * Math.cos(-midAngle * RADIAN);
+              const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+              return (
+                <text
+                  x={x}
+                  y={y}
+                  fill="black"
+                  textAnchor={x > cx ? 'start' : 'end'}
+                  dominantBaseline="central"
+                  className="font-bold"
+                >
+                  {`${(percent * 100).toFixed(0)}% ${payload.label}`}
+                </text>
+              );
+            }}
+            labelLine={false}
           >
              {chartData.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.fill} />
             ))}
           </Pie>
-           <text
-              x="50%"
-              y="50%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              className="fill-foreground text-2xl font-bold"
-            >
-              {`${(chartData[activeIndex].value / totalValue * 100).toFixed(0)}%`}
-            </text>
         </PieChart>
       </ChartContainer>
     </CardContent>
