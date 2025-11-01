@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/card';
 import { FieldStatsChart } from './field-stats-chart';
 import { useLanguage } from '@/i18n/provider';
+import { CropDetailsTabs } from './crop-details-tabs';
 
 const zoneData = [
   { 
@@ -49,9 +50,10 @@ export function FieldZones() {
       </CardHeader>
       <CardContent className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {zoneData.map(({ zone, data }) => (
-          <div key={zone}>
-             <h3 className="text-lg font-semibold text-center mb-2">{t(`myFieldsPage.zones.${zone}`)}</h3>
+          <div key={zone} className="flex flex-col gap-4">
+            <h3 className="text-lg font-semibold text-center mb-2">{t(`myFieldsPage.zones.${zone}`)}</h3>
             <FieldStatsChart chartData={data} height="250px" />
+            <CropDetailsTabs />
           </div>
         ))}
       </CardContent>

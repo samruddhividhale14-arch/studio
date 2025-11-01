@@ -52,6 +52,24 @@
       "zoneA": "जोन ए",
       "zoneB": "जोन बी",
       "zoneC": "जोन सी"
+    },
+    "cropDetails": {
+      "water": {
+        "title": "पानी",
+        "distributionTitle": "पानी की आवश्यकता का वितरण"
+      },
+      "pest": {
+        "title": "कीट जोखिम",
+        "distributionTitle": "कीट जोखिम वितरण"
+      },
+      "nutrition": {
+        "title": "पोषण",
+        "distributionTitle": "पोषण आवश्यकता वितरण"
+      },
+      "levels": {
+        "high": "उच्च",
+        "medium": "मध्यम"
+      }
     }
   },
   "decisionSupport": {

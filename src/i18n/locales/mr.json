@@ -52,6 +52,24 @@
       "zoneA": "विभाग अ",
       "zoneB": "विभाग ब",
       "zoneC": "विभाग क"
+    },
+     "cropDetails": {
+      "water": {
+        "title": "पाणी",
+        "distributionTitle": "पाणी आवश्यकता वितरण"
+      },
+      "pest": {
+        "title": "कीड धोका",
+        "distributionTitle": "कीड धोका वितरण"
+      },
+      "nutrition": {
+        "title": "पोषण",
+        "distributionTitle": "पोषण आवश्यकता वितरण"
+      },
+      "levels": {
+        "high": "उच्च",
+        "medium": "मध्यम"
+      }
     }
   },
   "decisionSupport": {

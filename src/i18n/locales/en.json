@@ -52,6 +52,24 @@
       "zoneA": "Zone A",
       "zoneB": "Zone B",
       "zoneC": "Zone C"
+    },
+    "cropDetails": {
+      "water": {
+        "title": "Water",
+        "distributionTitle": "Water Requirement Distribution"
+      },
+      "pest": {
+        "title": "Pest Risk",
+        "distributionTitle": "Pest Risk Distribution"
+      },
+      "nutrition": {
+        "title": "Nutrition",
+        "distributionTitle": "Nutrition Requirement Distribution"
+      },
+      "levels": {
+        "high": "High",
+        "medium": "Medium"
+      }
     }
   },
   "decisionSupport": {
