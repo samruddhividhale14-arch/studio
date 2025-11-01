@@ -2,7 +2,7 @@
 
 import *
 as React from 'react';
-import { Pie, PieChart, Sector } from 'recharts';
+import { Pie, PieChart, Sector, Cell } from 'recharts';
 import { Leaf, AlertTriangle, Droplets } from 'lucide-react';
 
 import {
@@ -103,13 +103,13 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
   const chartData = React.useMemo(() => {
     const data = chartDataProp || initialChartData;
     if (customChartConfig) {
-      return data;
+      return data.map((item) => ({...item, label: chartConfig[item.metric as keyof typeof chartConfig]?.label}));
     }
     return data.map(item => ({
       ...item,
       label: t(`dashboard.fieldStatus.${item.metric}.title`),
     }));
-  }, [t, chartDataProp, customChartConfig]);
+  }, [t, chartDataProp, customChartConfig, chartConfig]);
 
 
   const activeMetric = chartData[activeIndex];
@@ -144,6 +144,35 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
             innerRadius={height ? 50 : 80}
             outerRadius={height ? 70 : 110}
             strokeWidth={2}
+            labelLine={false}
+            label={({
+              cx,
+              cy,
+              midAngle,
+              innerRadius,
+              outerRadius,
+              percent,
+              index,
+              payload
+            }) => {
+              const RADIAN = Math.PI / 180;
+              const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+              const x = cx + radius * Math.cos(-midAngle * RADIAN);
+              const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+              return (
+                <text
+                  x={x}
+                  y={y}
+                  fill="hsl(var(--primary-foreground))"
+                  textAnchor={x > cx ? 'start' : 'end'}
+                  dominantBaseline="central"
+                  className="text-xs font-medium"
+                >
+                  {payload.label}
+                </text>
+              );
+            }}
           />
         </PieChart>
       </ChartContainer>
