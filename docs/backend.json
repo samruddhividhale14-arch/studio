@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "Farmer": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Farmer",
+      "type": "object",
+      "description": "Represents a farmer in the AgriSync application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the farmer entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The farmer's full name."
+        },
+        "email": {
+          "type": "string",
+          "description": "The farmer's email address.",
+          "format": "email"
+        },
+        "language": {
+          "type": "string",
+          "description": "The farmer's preferred language."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "language"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}/farmers/{farmerId}",
+        "definition": {
+          "entityName": "Farmer",
+          "schema": {
+            "$ref": "#/backend/entities/Farmer"
+          },
+          "description": "Stores farmer profiles. Each farmer profile is stored under the user's ID. This path enforces that each farmer is owned by a specific user (path-based ownership).",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique ID of the user."
+            },
+            {
+              "name": "farmerId",
+              "description": "The unique ID of the farmer's document."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to securely store farmer data with a focus on path-based ownership for private user data. Each farmer's information is stored under their unique user ID, enabling simple and secure security rules. This approach ensures that only the authenticated user can access their own data. This structure facilitates easy implementation of security rules based on `request.auth.uid`, eliminating the need for complex authorization logic or `get()` calls.\n\nThe `/users/{userId}/farmers/{farmerId}` path provides authorization independence as the Farmer entity inherently belongs to the user identified by `{userId}`. Security rules can directly use `request.auth.uid == userId` to grant access, avoiding the need for additional data reads for authorization. Since farmers are 1:1 with users in this scenario (one user creates their farmer profile), the path-based ownership model is best. There is no need for a membership model, nor is there any need to denormalize data into the farmer document to achieve authorization independence."
+  }
+}
