@@ -53,6 +53,10 @@
       "zoneB": "विभाग ब",
       "zoneC": "विभाग क"
     },
+    "tabs": {
+      "details": "पीक तपशील",
+      "recommendations": "शिफारसी"
+    },
      "cropDetails": {
       "water": {
         "title": "पाणी",
@@ -70,6 +74,20 @@
         "high": "उच्च",
         "medium": "मध्यम"
       }
+    },
+    "recommendations": {
+      "title": "एआय पीक शिफारसी",
+      "description": "या झोनसाठी पीक आरोग्य सुधारण्यासाठी एआय-समर्थित शिफारसी मिळवा.",
+      "form": {
+        "button": {
+          "idle": "शिफारसी मिळवा",
+          "loading": "तयार होत आहे..."
+        }
+      },
+      "error": {
+        "title": "त्रुटी"
+      },
+      "resultsTitle": "शिफारसी"
     }
   },
   "decisionSupport": {

@@ -10,10 +10,13 @@ import {
 import { FieldStatsChart } from './field-stats-chart';
 import { useLanguage } from '@/i18n/provider';
 import { CropDetailsTabs } from './crop-details-tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { CropRecommendations } from './crop-recommendations';
 
 const zoneData = [
   { 
-    zone: 'zoneA', 
+    zone: 'zoneA',
+    cropType: 'Corn',
     data: [
       { metric: 'healthy', value: 80, fill: 'hsl(var(--chart-1))' },
       { metric: 'deficient', value: 15, fill: 'hsl(var(--chart-2))' },
@@ -22,6 +25,7 @@ const zoneData = [
   },
   { 
     zone: 'zoneB',
+    cropType: 'Soybean',
     data: [
       { metric: 'healthy', value: 60, fill: 'hsl(var(--chart-1))' },
       { metric: 'deficient', value: 25, fill: 'hsl(var(--chart-2))' },
@@ -30,6 +34,7 @@ const zoneData = [
   },
   {
     zone: 'zoneC',
+    cropType: 'Wheat',
     data: [
       { metric: 'healthy', value: 50, fill: 'hsl(var(--chart-1))' },
       { metric: 'deficient', value: 30, fill: 'hsl(var(--chart-2))' },
@@ -49,11 +54,22 @@ export function FieldZones() {
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {zoneData.map(({ zone, data }) => (
+        {zoneData.map(({ zone, data, cropType }) => (
           <div key={zone} className="flex flex-col gap-4">
             <h3 className="text-lg font-semibold text-center mb-2">{t(`myFieldsPage.zones.${zone}`)}</h3>
             <FieldStatsChart chartData={data} height="250px" />
-            <CropDetailsTabs />
+            <Tabs defaultValue='details' className='w-full'>
+              <TabsList className='grid w-full grid-cols-2'>
+                <TabsTrigger value='details'>{t('myFieldsPage.tabs.details')}</TabsTrigger>
+                <TabsTrigger value='recommendations'>{t('myFieldsPage.tabs.recommendations')}</TabsTrigger>
+              </TabsList>
+              <TabsContent value='details'>
+                <CropDetailsTabs />
+              </TabsContent>
+              <TabsContent value='recommendations'>
+                <CropRecommendations zoneId={zone} cropType={cropType} />
+              </TabsContent>
+            </Tabs>
           </div>
         ))}
       </CardContent>

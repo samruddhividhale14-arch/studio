@@ -53,6 +53,10 @@
       "zoneB": "Zone B",
       "zoneC": "Zone C"
     },
+    "tabs": {
+      "details": "Crop Details",
+      "recommendations": "Recommendations"
+    },
     "cropDetails": {
       "water": {
         "title": "Water",
@@ -70,6 +74,20 @@
         "high": "High",
         "medium": "Medium"
       }
+    },
+    "recommendations": {
+      "title": "AI Crop Recommendations",
+      "description": "Get AI-powered recommendations to improve crop health for this zone.",
+      "form": {
+        "button": {
+          "idle": "Get Recommendations",
+          "loading": "Generating..."
+        }
+      },
+      "error": {
+        "title": "Error"
+      },
+      "resultsTitle": "Recommendations"
     }
   },
   "decisionSupport": {

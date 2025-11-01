@@ -53,6 +53,10 @@
       "zoneB": "जोन बी",
       "zoneC": "जोन सी"
     },
+    "tabs": {
+      "details": "फसल विवरण",
+      "recommendations": "सिफारिशें"
+    },
     "cropDetails": {
       "water": {
         "title": "पानी",
@@ -70,6 +74,20 @@
         "high": "उच्च",
         "medium": "मध्यम"
       }
+    },
+    "recommendations": {
+      "title": "एआई फसल सिफारिशें",
+      "description": "इस क्षेत्र के लिए फसल स्वास्थ्य में सुधार के लिए एआई-संचालित सिफारिशें प्राप्त करें।",
+      "form": {
+        "button": {
+          "idle": "सिफारिशें प्राप्त करें",
+          "loading": "उत्पन्न हो रहा है..."
+        }
+      },
+      "error": {
+        "title": "त्रुटि"
+      },
+      "resultsTitle": "सिफारिशें"
     }
   },
   "decisionSupport": {
