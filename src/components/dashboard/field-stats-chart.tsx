@@ -82,6 +82,9 @@ const ActiveShape = (props: any) => {
         outerRadius={outerRadius + 14}
         fill={fill}
       />
+      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
+      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333" className="font-bold">{`${payload.label}`}</text>
     </g>
   );
 };
@@ -145,34 +148,7 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
             outerRadius={height ? 70 : 110}
             strokeWidth={2}
             labelLine={false}
-            label={({
-              cx,
-              cy,
-              midAngle,
-              innerRadius,
-              outerRadius,
-              percent,
-              index,
-              payload
-            }) => {
-              const RADIAN = Math.PI / 180;
-              const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-              const x = cx + radius * Math.cos(-midAngle * RADIAN);
-              const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-              return (
-                <text
-                  x={x}
-                  y={y}
-                  fill="hsl(var(--primary-foreground))"
-                  textAnchor={x > cx ? 'start' : 'end'}
-                  dominantBaseline="central"
-                  className="text-xs font-medium"
-                >
-                  {payload.label}
-                </text>
-              );
-            }}
+            label={false}
           />
         </PieChart>
       </ChartContainer>
