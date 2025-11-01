@@ -1,8 +1,8 @@
 'use client';
 import type { PropsWithChildren } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { BrainCircuit, CalendarCheck, Home, Leaf, LogOut, Settings, Tractor, User } from 'lucide-react';
+import { BrainCircuit, CalendarCheck, Home, Leaf, LogOut, Settings, Tractor, User, Loader2 } from 'lucide-react';
 
 import {
   Sidebar,
@@ -28,11 +28,37 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { LanguageProvider, useLanguage } from '@/i18n/provider';
+import { useAuth, useUser } from '@/firebase';
+import { signOut } from 'firebase/auth';
+import { useEffect } from 'react';
 
 function DashboardLayoutContent({ children }: PropsWithChildren) {
   const { t } = useLanguage();
   const pathname = usePathname();
   const avatar = PlaceHolderImages.find((img) => img.id === 'avatar-male-1');
+  const auth = useAuth();
+  const router = useRouter();
+  const { user, isUserLoading } = useUser();
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    router.push('/login');
+  };
+  
+  useEffect(() => {
+    if (!isUserLoading && !user) {
+      router.push('/login');
+    }
+  }, [user, isUserLoading, router]);
+
+  if (isUserLoading) {
+    return <div className="flex h-screen w-full items-center justify-center"><Loader2 className="h-10 w-10 animate-spin" /></div>;
+  }
+  
+  if (!user) {
+    return null; 
+  }
+
   return (
     <SidebarProvider>
       <Sidebar
@@ -105,7 +131,7 @@ function DashboardLayoutContent({ children }: PropsWithChildren) {
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <div className="text-left">
-                  <p className="text-sm font-medium">{t('sidebar.user.name')}</p>
+                  <p className="text-sm font-medium">{user?.displayName || t('sidebar.user.name')}</p>
                   <p className="text-xs text-muted-foreground">{t('sidebar.user.role')}</p>
                 </div>
               </Button>
@@ -116,7 +142,7 @@ function DashboardLayoutContent({ children }: PropsWithChildren) {
               <DropdownMenuItem><User className="mr-2 h-4 w-4" />{t('sidebar.user.dropdown.profile')}</DropdownMenuItem>
               <DropdownMenuItem><Settings className="mr-2 h-4 w-4" />{t('sidebar.user.dropdown.settings')}</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild><Link href="/"><LogOut className="mr-2 h-4 w-4" />{t('sidebar.user.dropdown.logout')}</Link></DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout}><LogOut className="mr-2 h-4 w-4" />{t('sidebar.user.dropdown.logout')}</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </SidebarFooter>
