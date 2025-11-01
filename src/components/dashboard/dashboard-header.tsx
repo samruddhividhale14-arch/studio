@@ -1,13 +1,23 @@
-import { Search } from 'lucide-react';
+'use client';
+import { Languages, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { useState } from 'react';
 
 export function DashboardHeader() {
+  const [language, setLanguage] = useState('English');
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur sm:px-6">
       <SidebarTrigger className="md:hidden" />
 
-      <div className="w-full flex-1">
+      <div className="flex-1">
         <form>
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -19,6 +29,25 @@ export function DashboardHeader() {
           </div>
         </form>
       </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="icon">
+            <Languages className="h-[1.2rem] w-[1.2rem]" />
+            <span className="sr-only">Select Language</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem onClick={() => setLanguage('English')}>
+            English
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setLanguage('Marathi')}>
+            Marathi
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setLanguage('Hindi')}>
+            Hindi
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </header>
   );
 }
