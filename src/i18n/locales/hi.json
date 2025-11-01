@@ -3,6 +3,7 @@
     "dashboard": "tableau",
     "myFields": "मेरे खेत",
     "aiSupport": "एआई समर्थन",
+    "bookAppointment": "अपॉइंटमेंट बुक करें",
     "user": {
       "avatarAlt": "उपयोगकर्ता अवतार",
       "name": "जॉन डो",
@@ -127,6 +128,35 @@
       },
       "other": {
         "title": "अन्य सुझाव"
+      }
+    }
+  },
+  "bookAppointmentPage": {
+    "title": "अपॉइंटमेंट बुक करें",
+    "description": "हमारे कृषि विशेषज्ञों में से एक के साथ परामर्श निर्धारित करें।",
+    "form": {
+      "date": {
+        "label": "तारीख"
+      },
+      "time": {
+        "label": "समय",
+        "placeholder": "एक समय चुनें"
+      },
+      "address": {
+        "label": "पता",
+        "placeholder": "अपने खेत का पता दर्ज करें"
+      },
+      "pincode": {
+        "label": "पिन कोड",
+        "placeholder": "अपना क्षेत्र पिन कोड दर्ज करें"
+      },
+      "button": {
+        "idle": "अपॉइंटमेंट बुक करें",
+        "loading": "बुक हो रहा है..."
+      },
+      "success": {
+        "title": "अपॉइंटमेंट बुक हो गया!",
+        "description": "आपकी अपॉइंटमेंट सफलतापूर्वक निर्धारित हो गई है।"
       }
     }
   }

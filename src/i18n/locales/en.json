@@ -3,6 +3,7 @@
     "dashboard": "Dashboard",
     "myFields": "My Fields",
     "aiSupport": "AI Support",
+    "bookAppointment": "Book Appointment",
     "user": {
       "avatarAlt": "User Avatar",
       "name": "John Doe",
@@ -127,6 +128,35 @@
       },
       "other": {
         "title": "Other Suggestions"
+      }
+    }
+  },
+  "bookAppointmentPage": {
+    "title": "Book an Appointment",
+    "description": "Schedule a consultation with one of our agricultural experts.",
+    "form": {
+      "date": {
+        "label": "Date"
+      },
+      "time": {
+        "label": "Time",
+        "placeholder": "Select a time"
+      },
+      "address": {
+        "label": "Address",
+        "placeholder": "Enter your farm's address"
+      },
+      "pincode": {
+        "label": "Pincode",
+        "placeholder": "Enter your area pincode"
+      },
+      "button": {
+        "idle": "Book Appointment",
+        "loading": "Booking..."
+      },
+      "success": {
+        "title": "Appointment Booked!",
+        "description": "Your appointment has been scheduled successfully."
       }
     }
   }

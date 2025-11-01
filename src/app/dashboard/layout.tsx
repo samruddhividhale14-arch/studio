@@ -2,7 +2,7 @@
 import type { PropsWithChildren } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { BrainCircuit, Home, Leaf, LogOut, Settings, Tractor, User } from 'lucide-react';
+import { BrainCircuit, CalendarCheck, Home, Leaf, LogOut, Settings, Tractor, User } from 'lucide-react';
 
 import {
   Sidebar,
@@ -79,6 +79,18 @@ function DashboardLayoutContent({ children }: PropsWithChildren) {
                 <Link href="/dashboard/my-fields">
                   <BrainCircuit />
                   <span>{t('sidebar.aiSupport')}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                asChild 
+                tooltip={t('sidebar.bookAppointment')}
+                isActive={pathname === '/dashboard/book-appointment'}
+              >
+                <Link href="/dashboard/book-appointment">
+                  <CalendarCheck />
+                  <span>{t('sidebar.bookAppointment')}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
