@@ -46,9 +46,12 @@ const defaultChartConfig = {
   },
 };
 
-const ActiveShape = (props: any) => {
-  const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value, chartConfig } = props;
-  const RADIAN = Math.PI / 180;
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, payload }: any) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
   const sin = Math.sin(-RADIAN * midAngle);
   const cos = Math.cos(-RADIAN * midAngle);
   const sx = cx + (outerRadius + 10) * cos;
@@ -60,49 +63,21 @@ const ActiveShape = (props: any) => {
   const textAnchor = cos >= 0 ? 'start' : 'end';
 
   return (
-    <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill} className="text-2xl font-bold">
-        {`${(percent * 100).toFixed(0)}%`}
+    <>
+      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={"#333"} fill="none" />
+      <circle cx={ex} cy={ey} r={2} fill={"#333"} stroke="none" />
+      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#000" className="font-bold text-sm" dy={4}>
+        {`${payload.label} (${(percent * 100).toFixed(0)}%)`}
       </text>
-      <Sector
-        cx={cx}
-        cy={cy}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius + 8}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        fill={fill}
-      />
-      <Sector
-        cx={cx}
-        cy={cy}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        innerRadius={outerRadius + 12}
-        outerRadius={outerRadius + 14}
-        fill={fill}
-      />
-      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333" className="font-bold">{`${payload.label}`}</text>
-    </g>
+    </>
   );
 };
 
-
 export function FieldStatsChart({ chartData: chartDataProp, height, customChartConfig }: { chartData?: typeof initialChartData, height?: string, customChartConfig?: any }) {
   const { t } = useLanguage();
-  const [activeIndex, setActiveIndex] = React.useState(0);
-
+  
   const chartConfig = { ...defaultChartConfig, ...customChartConfig };
 
-  const onPieEnter = React.useCallback(
-    (_: any, index: number) => {
-      setActiveIndex(index);
-    },
-    [setActiveIndex]
-  );
-  
   const chartData = React.useMemo(() => {
     const data = chartDataProp || initialChartData;
     if (customChartConfig) {
@@ -115,7 +90,7 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
   }, [t, chartDataProp, customChartConfig, chartConfig]);
 
 
-  const activeMetric = chartData[activeIndex];
+  const activeMetric = chartData[0];
 
   if (!activeMetric) {
     return null;
@@ -132,29 +107,30 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
         className="mx-auto aspect-square"
         style={{ height: height || '300px' }}
       >
-        <PieChart>
+        <PieChart margin={{ top: 40, right: 120, bottom: 40, left: 120 }}>
           <ChartTooltip
-            cursor={false}
+            cursor={true}
             content={<ChartTooltipContent hideLabel />}
           />
           <Pie
-            activeIndex={activeIndex}
-            activeShape={(props: any) => <ActiveShape {...props} chartConfig={chartConfig} />}
-            onMouseEnter={onPieEnter}
             data={chartData}
             dataKey="value"
             nameKey="label"
-            innerRadius={height ? 50 : 80}
-            outerRadius={height ? 70 : 110}
+            innerRadius={height ? 30 : 60}
+            outerRadius={height ? 50 : 80}
             strokeWidth={2}
             labelLine={false}
-            label={false}
-          />
+            label={renderCustomizedLabel}
+          >
+             {chartData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.fill} />
+            ))}
+          </Pie>
         </PieChart>
       </ChartContainer>
     </CardContent>
     {ActiveIcon && !customChartConfig && (
-        <CardContent className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+        <CardContent className="flex items-center justify-center gap-2 text-sm text-muted-foreground mt-4">
         <ActiveIcon className="h-5 w-5" />
         <div>{t(`dashboard.fieldStatus.${activeMetric.metric}.description`)}</div>
         </CardContent>
