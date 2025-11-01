@@ -1,7 +1,6 @@
 'use client';
 
-import *
-as React from 'react';
+import * as React from 'react';
 import { Pie, PieChart, Sector, Cell } from 'recharts';
 import { Leaf, AlertTriangle, Droplets } from 'lucide-react';
 
@@ -46,30 +45,9 @@ const defaultChartConfig = {
   },
 };
 
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, outerRadius, percent, payload }: any) => {
-  const radius = outerRadius + 30;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-  const textAnchor = x > cx ? 'start' : 'end';
-
-  return (
-    <text
-      x={x}
-      y={y}
-      textAnchor={textAnchor}
-      fill="#000"
-      className="font-bold text-sm"
-      dominantBaseline="central"
-    >
-      {`${payload.label} (${(percent * 100).toFixed(0)}%)`}
-    </text>
-  );
-};
-
-
 export function FieldStatsChart({ chartData: chartDataProp, height, customChartConfig }: { chartData?: typeof initialChartData, height?: string, customChartConfig?: any }) {
   const { t } = useLanguage();
+  const [activeIndex, setActiveIndex] = React.useState(0);
   
   const chartConfig = { ...defaultChartConfig, ...customChartConfig };
 
@@ -85,7 +63,11 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
   }, [t, chartDataProp, customChartConfig, chartConfig]);
 
 
-  const activeMetric = chartData[0];
+  const onPieEnter = React.useCallback((_: any, index: number) => {
+    setActiveIndex(index);
+  }, [setActiveIndex]);
+
+  const activeMetric = chartData[activeIndex];
 
   if (!activeMetric) {
     return null;
@@ -94,15 +76,21 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
   const activeMetricConfig = chartConfig[activeMetric.metric as keyof typeof chartConfig];
   const ActiveIcon = activeMetricConfig?.icon;
 
+  const totalValue = React.useMemo(
+    () => chartData.reduce((acc, curr) => acc + curr.value, 0),
+    [chartData]
+  );
+
+
   const content = (
     <>
-    <CardContent className="flex-1 pb-0">
+    <CardContent className="flex-1 flex items-center justify-center pb-0">
       <ChartContainer
         config={chartConfig as any}
         className="mx-auto aspect-square"
         style={{ height: height || '300px' }}
       >
-        <PieChart margin={{ top: 40, right: 120, bottom: 40, left: 120 }}>
+        <PieChart>
           <ChartTooltip
             cursor={true}
             content={<ChartTooltipContent hideLabel />}
@@ -114,13 +102,22 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
             innerRadius={height ? 30 : 60}
             outerRadius={height ? 50 : 80}
             strokeWidth={2}
-            labelLine={false}
-            label={renderCustomizedLabel}
+            activeIndex={activeIndex}
+            onMouseEnter={onPieEnter}
           >
              {chartData.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.fill} />
             ))}
           </Pie>
+           <text
+              x="50%"
+              y="50%"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              className="fill-foreground text-2xl font-bold"
+            >
+              {`${(chartData[activeIndex].value / totalValue * 100).toFixed(0)}%`}
+            </text>
         </PieChart>
       </ChartContainer>
     </CardContent>
