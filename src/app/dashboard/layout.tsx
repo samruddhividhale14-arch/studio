@@ -3,6 +3,7 @@ import type { PropsWithChildren } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { BrainCircuit, CalendarCheck, Home, Leaf, LogOut, Settings, Tractor, User, Loader2 } from 'lucide-react';
+import { doc, } from 'firebase/firestore';
 
 import {
   Sidebar,
@@ -28,17 +29,27 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { LanguageProvider, useLanguage } from '@/i18n/provider';
-import { useAuth, useUser } from '@/firebase';
+import { useAuth, useUser, useFirestore, useDoc, useMemoFirebase } from '@/firebase';
 import { signOut } from 'firebase/auth';
 import { useEffect } from 'react';
+import type { Farmer } from '@/models/farmer';
+
 
 function DashboardLayoutContent({ children }: PropsWithChildren) {
   const { t } = useLanguage();
   const pathname = usePathname();
   const avatar = PlaceHolderImages.find((img) => img.id === 'avatar-male-1');
   const auth = useAuth();
+  const firestore = useFirestore();
   const router = useRouter();
   const { user, isUserLoading } = useUser();
+
+  const farmerDocRef = useMemoFirebase(() => {
+    if (!user) return null;
+    return doc(firestore, 'users', user.uid, 'farmers', user.uid);
+  }, [firestore, user]);
+
+  const { data: farmer, isLoading: isFarmerLoading } = useDoc<Farmer>(farmerDocRef);
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -51,7 +62,7 @@ function DashboardLayoutContent({ children }: PropsWithChildren) {
     }
   }, [user, isUserLoading, router]);
 
-  if (isUserLoading) {
+  if (isUserLoading || isFarmerLoading) {
     return <div className="flex h-screen w-full items-center justify-center"><Loader2 className="h-10 w-10 animate-spin" /></div>;
   }
   
@@ -131,7 +142,7 @@ function DashboardLayoutContent({ children }: PropsWithChildren) {
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <div className="text-left">
-                  <p className="text-sm font-medium">{user?.displayName || t('sidebar.user.name')}</p>
+                  <p className="text-sm font-medium">{farmer?.name || user?.displayName || t('sidebar.user.name')}</p>
                   <p className="text-xs text-muted-foreground">{t('sidebar.user.role')}</p>
                 </div>
               </Button>
