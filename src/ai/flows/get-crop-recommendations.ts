@@ -44,7 +44,7 @@ const prompt = ai.definePrompt({
   prompt: `You are an expert agronomist. A farmer needs recommendations for a specific zone on their farm.
 
 Provide actionable advice to maintain or improve crop health based on the following details.
-Your recommendations should be practical, easy to implement, and presented as a concise, point-wise list of 3 to 4 points.
+Your recommendations should be practical, easy to implement, and presented as a concise bulleted list of 3 to 4 points. Each point should start with a '*' character.
 
 - Crop Type: {{{cropType}}}
 - Field Zone: {{{zoneId}}}
