@@ -62,13 +62,13 @@ const ActiveShape = (props: any) => {
   return (
     <g>
       <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill} className="text-2xl font-bold">
-        {`${value}%`}
+        {`${(percent * 100).toFixed(0)}%`}
       </text>
       <Sector
         cx={cx}
         cy={cy}
         innerRadius={innerRadius}
-        outerRadius={outerRadius}
+        outerRadius={outerRadius + 8}
         startAngle={startAngle}
         endAngle={endAngle}
         fill={fill}
@@ -78,16 +78,10 @@ const ActiveShape = (props: any) => {
         cy={cy}
         startAngle={startAngle}
         endAngle={endAngle}
-        innerRadius={outerRadius + 6}
-        outerRadius={outerRadius + 10}
+        innerRadius={outerRadius + 12}
+        outerRadius={outerRadius + 14}
         fill={fill}
       />
-      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="hsl(var(--foreground))" className="text-sm">{chartConfig[payload.metric as keyof typeof chartConfig]?.label || payload.metric}</text>
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="hsl(var(--muted-foreground))" className="text-xs">
-        {`${(percent * 100).toFixed(0)}% of total`}
-      </text>
     </g>
   );
 };
@@ -154,7 +148,7 @@ export function FieldStatsChart({ chartData: chartDataProp, height, customChartC
         </PieChart>
       </ChartContainer>
     </CardContent>
-    {ActiveIcon && (
+    {ActiveIcon && !customChartConfig && (
         <CardContent className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
         <ActiveIcon className="h-5 w-5" />
         <div>{t(`dashboard.fieldStatus.${activeMetric.metric}.description`)}</div>
