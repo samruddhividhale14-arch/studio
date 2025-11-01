@@ -61,7 +61,7 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
-      // The onAuthStateChanged listener in FirebaseProvider will handle the redirect
+      router.push('/dashboard');
     } catch (error: any) {
       setLoading(false);
       toast({
